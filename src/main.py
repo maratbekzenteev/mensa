@@ -56,6 +56,12 @@ def main(term: Terminal) -> int:
         body_grid.set_cell(1, 0, HorizontalTabs(0, 0))
         body_grid.set_cell(1, 1, MenuGrid(0, 0))
 
+        if len(get_available_days()) == 0:
+            print(term.red + term.on_black + "ERROR: No available days")
+            print(term.white + term.on_black + "Press any key to quit")
+            key = term.inkey()
+            return
+
         # Fills day_tabs with days for which the menus can be fetched from the STW website
         day_tabs = body_grid.get_cell(0, 1)
         day_tabs.set_tabs([formatted_date(*date) for date in get_available_days()])
@@ -93,6 +99,12 @@ def main(term: Terminal) -> int:
                 day_tabs.get_cell(*day_tabs.get_opened_cell()).get_text()
             )
         )
+
+        if len(menu) == 0:
+            print(term.red + term.on_black + "ERROR: Empty menu")
+            print(term.white + term.on_black + "Press any key to quit")
+            key = term.inkey()
+            return
 
         # Redraws menu_grid with the new data
         init_menu_grid(menu_grid, menu)

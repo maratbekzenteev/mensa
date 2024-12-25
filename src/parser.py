@@ -53,7 +53,11 @@ def formatted_date(day: int, month: int, year: int) -> str:
 
 # Output format: (day, month, year)
 def raw_date(s: str) -> (int, int, int):
-    return tuple(int(i) for i in s.split('.'))
+    try:
+        return tuple(int(i) for i in s.split('.'))
+    except ValueError:
+        today = datetime.date.today()
+        return today.day, today.month, today.year
 
 
 # Output format: [(day, month, year)]

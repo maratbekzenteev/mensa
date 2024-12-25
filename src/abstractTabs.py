@@ -1,4 +1,5 @@
 from grid import Grid
+from tab import Tab
 
 
 # AbstractTabs is a class that represents navigation elements made of tabs
@@ -21,6 +22,7 @@ class AbstractTabs(Grid):
     # Initialises the grid
     def __init__(self, width: int, height: int):
         super().__init__(width, height)
+        self.set_cell(0, 0, Tab(0, 0))
         self.opened_cell = (0, 0)
 
     # Sets the old opened cell to closed and sets the new one to open
@@ -28,6 +30,14 @@ class AbstractTabs(Grid):
         self.get_cell(*self.opened_cell).set_opened(False)
         self.opened_cell = new
         self.get_cell(*self.opened_cell).set_opened(True)
+
+    # Returns the widget at coordinates (x, y)
+    # The preferred way of directly accessing widgets in the grid cells
+    # Returns a dummy widget when nonsensical coordinates are given
+    def get_cell(self, x: int, y: int) -> Tab:
+        if x < 0 or y < 0 or x >= len(self.columns) or y >= len(self.rows):
+            return Tab(0, 0, text="")
+        return self.widget_grid[y][x]
 
     # Getter for self.opened_cell
     def get_opened_cell(self) -> tuple[int, int]:
