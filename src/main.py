@@ -138,6 +138,9 @@ def main(term: Terminal) -> int:
                 # Redraws menu_grid with the new data
                 init_menu_grid(menu_grid, menu)
 
+            # Resizes the UI based on the new size of the window
+            if ((term.width, term.height) != main_grid.get_size()):
+                main_grid.set_size(term.width, term.height)
             # Renders the screen and prints it in the terminal,
             # beginning from the top-right position ("home")
             print(term.home + screen(main_grid, term), end='')

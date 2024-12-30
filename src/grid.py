@@ -154,7 +154,7 @@ class Grid(Widget):
     # Sets the new "actual"/"displayed" size and recalculates the grid cell sizes accordingly
     def set_size(self, new_width: int, new_height: int):
         super().set_size(new_width, new_height)
-        self.active_cell = (0, 0)
+        # self.set_active_cell((0, 0))
 
         whole_width, whole_height = self.get_whole_size()
 
@@ -167,6 +167,9 @@ class Grid(Widget):
                     self.get_abs_size(cell_width[0], cell_width[1], whole_width),
                     self.get_abs_size(cell_height[0], cell_height[1], whole_height)
                 )
+
+        self.update_pref_widths()
+        self.update_pref_heights()
 
     # Puts a given widget into the cell with given coordinates
     # If the coordinates are invalid or if the given thing is no widget, does nothing
