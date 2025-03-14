@@ -9,8 +9,8 @@ from horizontalTabs import HorizontalTabs
 from textLine import TextLine
 from header import Header
 from enums import Unit, Event
-from parser import (get_menu, formatted_date, raw_date,
-                    get_available_days, raw_mensa, FORMATTED_TO_RAW_MENSA)
+from stw_parser import (get_menu, formatted_date, raw_date,
+                        get_available_days, raw_mensa, FORMATTED_TO_RAW_MENSA)
 
 ARROW_KEYS = {"KEY_LEFT", "KEY_RIGHT", "KEY_UP", "KEY_DOWN"}
 
